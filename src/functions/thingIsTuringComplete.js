@@ -1,8 +1,6 @@
 import sha1 from 'sha1'
 
-// Note: Hide this from Bear at all costs
-
-exports.handler = async event => {
+exports.handler = async (event, context) => {
   const input = event.queryStringParameters.input || ''
 
   const thingIsTuringComplete = input =>
