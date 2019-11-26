@@ -1,6 +1,6 @@
 import sha1 from 'sha1'
 
-exports.handler = async (event, context) => {
+exports.handler = async event => {
   const input = event.queryStringParameters.input || ''
 
   const thingIsTuringComplete = input =>

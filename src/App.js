@@ -16,7 +16,6 @@ function App() {
           setLoading(true)
           event.preventDefault()
 
-          // fetch(`http://icanhazip.com`)
           fetch(`/.netlify/functions/thingIsTuringComplete?input=${input}`)
             .then(res => res.text())
             .then(setResult)
