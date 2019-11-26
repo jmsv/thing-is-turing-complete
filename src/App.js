@@ -8,20 +8,23 @@ function App() {
 
   return (
     <div className="App">
-      <h1>is it turing complete ?</h1>
-      <input onChange={event => setInput(event.target.value)} />
+      <h2>is it turing complete ?</h2>
 
-      <button
-        onClick={() => {
+      <form
+        onSubmit={event => {
+          event.preventDefault()
+
           fetch(`/.netlify/functions/thingIsTuringComplete?input=${input}`)
             .then(res => res.text())
             .then(setResult)
         }}
       >
-        Find Out
-      </button>
+        <input onChange={event => setInput(event.target.value)} />
 
-      <h2>{result}</h2>
+        <input type="submit" value="Find Out" />
+      </form>
+
+      <h1>{result}</h1>
     </div>
   )
 }
