@@ -1,18 +1,27 @@
 import React, { useState } from 'react'
-import sha1 from 'sha1'
 
 import './App.css'
 
 function App() {
-  // const [isTC, setIsTC] = useState(null)
+  const [result, setResult] = useState(null)
+  const [input, setInput] = useState('javascript')
 
   return (
     <div className="App">
-      {/* <input
-        onChange={event => setIsTC(thingIsTuringComplete(event.target.value))}
-      />
+      <h1>is it turing complete ?</h1>
+      <input onChange={event => setInput(event.target.value)} />
 
-      <div>{isTC !== null && (isTC ? 'yes' : 'no')}</div> */}
+      <button
+        onClick={() => {
+          fetch(`/.netlify/functions/thingIsTuringComplete?input=${input}`)
+            .then(res => res.text())
+            .then(setResult)
+        }}
+      >
+        Find Out
+      </button>
+
+      <h2>{result}</h2>
     </div>
   )
 }
