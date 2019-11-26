@@ -19,17 +19,24 @@ function App() {
           fetch(`/.netlify/functions/thingIsTuringComplete?input=${input}`)
             .then(res => res.text())
             .then(setResult)
-            .then(() => setLoading(false))
+            .then(() => {
+              setLoading(false)
+              setInput('')
+            })
         }}
       >
-        <input onChange={event => setInput(event.target.value)} />
+        <input
+          type="text"
+          value={input}
+          onChange={event => setInput(event.target.value)}
+        />
 
         <input type="submit" value="Find Out" />
       </form>
 
       <h3>{loading && 'loading'}</h3>
 
-      <h1>{!loading && result}</h1>
+      {!loading && result && <h1 class={`result ${result}`}>{result}</h1>}
     </div>
   )
 }
